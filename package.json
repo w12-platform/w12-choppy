@@ -1,0 +1,25 @@
+{
+  "name": "w12-choppy",
+  "version": "0.0.1",
+  "description": "Automatization of set-upping a blockchain condition with any contract version",
+  "main": "bin/index.js",
+  "bin": {
+    "choppy": "bin/index.js"
+  },
+  "scripts": {
+    "truffle": "truffle",
+    "dev-net": "ganache-cli -p 7545 -g 0 -l 8000000 -i 5777 -m=\"caution general panther tobacco fit tortoise hood draw spike snow demise capital\" -d"
+  },
+  "author": "Kirill Khoroshilov <mr.hokid@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "commander": "^2.19.0",
+    "execa": "^1.0.0",
+    "extract-zip": "^1.6.7",
+    "fs-extra": "^7.0.0",
+    "ganache-cli": "^6.1.8",
+    "semver": "^5.6.0",
+    "truffle": "^4.1.14"
+  }
+}
