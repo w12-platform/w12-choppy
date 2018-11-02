@@ -13,13 +13,13 @@ Print list of contracts versions.
 
 `scripts [-c|--custom <path>]`
 
-Print list available scripts.
+Print list of available scripts.
 
 * `--custom <path>` - path to custom directory with scripts, e.q. /path/to, ../path/to
 
 `add <versions...>`
 
-Install locally specified version or versions of contracts.
+Install specified version or versions of contracts.
 
 `run [-c|--custom <path>] <scripts...>`
 
@@ -70,7 +70,7 @@ $ choppy net
 
 Select scripts from list and run
 ```
-$ choppy run 0.23.2_script 0.27.1
+$ choppy run 0.23.2_script 0.27.1_script
 ```
 
 ## Notes
