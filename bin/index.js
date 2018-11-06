@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const Main = require('../lib/Main');
 const pkg = require('../package');
 
