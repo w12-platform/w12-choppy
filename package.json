@@ -13,13 +13,16 @@
   "author": "Kirill Khoroshilov <mr.hokid@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@redtea/semint": "^1.0.1",
     "axios": "^0.18.0",
     "commander": "^2.19.0",
     "execa": "^1.0.0",
     "extract-zip": "^1.6.7",
     "fs-extra": "^7.0.0",
     "ganache-cli": "^6.1.8",
+    "openzeppelin-solidity": "^2.0.0",
     "semver": "^5.6.0",
-    "truffle": "^4.1.14"
+    "truffle": "^4.1.14",
+    "utf8-bytes": "0.0.1"
   }
 }
