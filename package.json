@@ -1,6 +1,6 @@
 {
   "name": "@w12/choppy",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Automatization of set-upping a blockchain condition with any contract version",
   "main": "bin/index.js",
   "bin": {
