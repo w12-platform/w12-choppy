@@ -6,6 +6,13 @@
   "bin": {
     "choppy": "bin/index.js"
   },
+  "files": [
+    "bin/",
+    "helpers/",
+    "lib/",
+    "scripts/",
+    "README.md"
+  ],
   "scripts": {
     "truffle": "truffle",
     "dev-net": "ganache-cli -p 7545 -g 0 -l 8000000 -i 5777 -m=\"caution general panther tobacco fit tortoise hood draw spike snow demise capital\" -d"
