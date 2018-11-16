@@ -1,29 +1,15 @@
 const Runner = new require('../helpers/Runner');
 const Logger = new require('../helpers/Logger');
-const semint = new require('@redtea/semint');
 
 const W12Crowdsale = artifacts.require('W12Crowdsale');
-const W12CrowdsaleStub = artifacts.require('W12CrowdsaleStub');
-const Percent = artifacts.require('Percent');
-const Utils = artifacts.require('Utils');
-const FundAccount = artifacts.require('FundAccount');
-const W12CrowdsaleFactory = artifacts.require('W12CrowdsaleFactory');
-const W12FundFactory = artifacts.require('W12FundFactory');
-const W12Fund = artifacts.require('W12Fund');
-const Rates = artifacts.require('Rates');
-const W12FundStub = artifacts.require('W12FundStub');
-const WTokenStub = artifacts.require('WTokenStub');
 const WToken = artifacts.require('WToken');
-const WTokenTestHelper = artifacts.require('WTokenTestHelper');
-const Wallets = artifacts.require("Wallets");
-const Versions = artifacts.require("VersionsLedger");
-const TokenExchanger = artifacts.require('TokenExchanger');
-const W12ListerStub = artifacts.require('W12ListerStub');
 
 const version = '0.27.1';
+const base = require('../parts/0.27.1/base');
 const runner = new Runner(this);
 
 module.exports = runner.generateHandler(async (ctx) => {
+    const _artifacts = await require('../parts/0.27.1/artifacts')(artifacts);
     const utils = ctx.utils;
 
     const logs = new Logger('0.27.1-alpha_active_refund1');
@@ -34,37 +20,17 @@ module.exports = runner.generateHandler(async (ctx) => {
 
     logs.addRecord('Owner', owner);
 
-    const VersionsContract = await Versions.new();
-    const WalletsContract = await Wallets.new();
-    const WTokenStubContract = await WTokenStub.new('TestToken1', 'TT1', 18);
-    const WTokenTestHelperContract = await WTokenTestHelper.new();
-    const RatesContract = await Rates.new();
-
-    const PercentLib = await Percent.new();
-    const UtilsLib = await Utils.new();
-    const FundAccountLib = await FundAccount.new();
-
-    W12CrowdsaleStub.link(PercentLib.constructor.contractName, PercentLib.address);
-    W12CrowdsaleStub.link(UtilsLib.constructor.contractName, UtilsLib.address);
-    W12Crowdsale.link(PercentLib.constructor.contractName, PercentLib.address);
-    W12Crowdsale.link(UtilsLib.constructor.contractName, UtilsLib.address);
-    W12CrowdsaleFactory.link(PercentLib.constructor.contractName, PercentLib.address);
-    W12CrowdsaleFactory.link(UtilsLib.constructor.contractName, UtilsLib.address);
-    W12FundFactory.link(FundAccountLib.constructor.contractName, FundAccountLib.address);
-    W12Fund.link(FundAccountLib.constructor.contractName, FundAccountLib.address);
-
-    const W12FundFactoryContract = await W12FundFactory.new(semint.encode(version, 4), RatesContract.address);
-    const W12CrowdsaleFactoryContract = await W12CrowdsaleFactory.new(semint.encode(version, 4), W12FundFactoryContract.address, RatesContract.address);
-    const TokenExchangerContract = await TokenExchanger.new(semint.encode(version, 4));
-    const W12ListerStubContract = await W12ListerStub.new(
-        semint.encode(version, 4),
-        WalletsContract.address,
-        W12CrowdsaleFactoryContract.address,
-        TokenExchangerContract.address
-    );
-
-    await TokenExchangerContract.transferOwnership(W12ListerStubContract.address);
-    await VersionsContract.setVersion(W12ListerStubContract.address, semint.encode(version, 4));
+    const {
+        VersionsLedgerContract,
+        WalletsContract,
+        WTokenStubContract,
+        WTokenTestHelperContract,
+        RatesContract,
+        W12FundFactoryContract,
+        W12CrowdsaleFactoryContract,
+        TokenExchangerContract,
+        W12ListerStubContract
+    } = await base(_artifacts);
 
     const defaultStagesGenerator = utils.createStagesGenerator();
     const defaultMilestonesGenerator = utils.createMilestonesGenerator();
@@ -155,7 +121,7 @@ module.exports = runner.generateHandler(async (ctx) => {
     await TT2.approve(crowdsale.address, 200);
     await crowdsale.buyTokens(web3.fromUtf8('TT2'), 200);
 
-    logs.addRecord(VersionsContract.constructor.contractName, VersionsContract.address);
+    logs.addRecord(VersionsLedgerContract.constructor.contractName, VersionsLedgerContract.address);
     logs.addRecord(WalletsContract.constructor.contractName, WalletsContract.address);
     logs.addRecord(WTokenStubContract.constructor.contractName, WTokenStubContract.address);
     logs.addRecord(WTokenTestHelperContract.constructor.contractName, WTokenTestHelperContract.address);
