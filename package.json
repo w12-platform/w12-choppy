@@ -10,6 +10,7 @@
     "bin/",
     "helpers/",
     "lib/",
+    "parts/",
     "scripts/",
     "README.md"
   ],
