@@ -51,26 +51,34 @@ Install CLI:
 $ npm install -g @w12/choppy
 ```
 
-Install contracts
+Install contract
 
 ```
-$ choppy add 0.23.2 0.27.1
+$ choppy add v0.23.2
 ```
 
-Print scripts list
+Print scripts list and select witch one to use
 
 ```
 $ choppy scripts
 ```
 
-Run dev network
+Run test-rpc network
+
 ```
 $ choppy net
 ```
 
-Select scripts from list and run
+Run script
+
 ```
-$ choppy run 0.23.2_script 0.27.1_script
+$ choppy run 0.23.2_script
+```
+
+For additional command usage information
+
+```
+$ choppy --help
 ```
 
 ## Notes
