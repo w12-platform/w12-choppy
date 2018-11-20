@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "truffle": "truffle",
-    "dev-net": "ganache-cli -p 7545 -g 0 -l 8000000 -i 5777 -m=\"caution general panther tobacco fit tortoise hood draw spike snow demise capital\" -d -b=2 -e=90000"
+    "dev-net": "ganache-cli -p 7545 -g 0 -l 8000000 -i 5777 -m=\"caution general panther tobacco fit tortoise hood draw spike snow demise capital\" -d -b=4 -e=90000"
   },
   "author": "Kirill Khoroshilov <mr.hokid@gmail.com>",
   "license": "MIT",
