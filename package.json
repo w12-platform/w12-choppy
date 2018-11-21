@@ -16,7 +16,7 @@
   ],
   "scripts": {
     "truffle": "truffle",
-    "dev-net": "ganache-cli -p 7545 -g 0 -l 8000000 -i 5777 -m=\"caution general panther tobacco fit tortoise hood draw spike snow demise capital\" -d -b=4 -e=90000"
+    "dev-net": "ganache-cli -p 7545 -g 0 -l 8000000 -i 5777 -m=\"caution general panther tobacco fit tortoise hood draw spike snow demise capital\" -d -e=90000"
   },
   "author": "Kirill Khoroshilov <mr.hokid@gmail.com>",
   "license": "MIT",
@@ -27,7 +27,7 @@
     "execa": "^1.0.0",
     "extract-zip": "^1.6.7",
     "fs-extra": "^7.0.0",
-    "ganache-cli": "^6.2.0-beta.0",
+    "ganache-cli": "^6.2.1",
     "openzeppelin-solidity": "^2.0.0",
     "semver": "^5.6.0",
     "truffle": "^4.1.14",
