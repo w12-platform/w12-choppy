@@ -74,11 +74,11 @@ module.exports = runner.generateHandler(async (ctx) => {
     await WTokenStubContract.mint(owner, '100000000' + '000000000000000000', 0);
     await WTokenStubContract.approve(W12ListerStubContract.address, '100000000' + '000000000000000000');
     await W12ListerStubContract.whitelistToken(
-        owner,
         WTokenStubContract.address,
         await WTokenStubContract.name(),
         await WTokenStubContract.symbol(),
         await WTokenStubContract.decimals(),
+        [owner],
         0,
         400,
         200,
@@ -86,6 +86,7 @@ module.exports = runner.generateHandler(async (ctx) => {
     );
     await W12ListerStubContract.placeToken(
         WTokenStubContract.address,
+        0,
         '1000' + '000000000000000000'
     );
     // initCrowdsale(address tokenAddress, uint amountForSale, uint price)
@@ -95,7 +96,7 @@ module.exports = runner.generateHandler(async (ctx) => {
         '1' + '00000000'
     );
     const crowdsale = W12Crowdsale.at(
-        await W12ListerStubContract.getTokenCrowdsale(WTokenStubContract.address, accounts[0])
+        (await W12ListerStubContract.getCrowdsales(WTokenStubContract.address))[0]
     );
     const startDate = web3.eth.getBlock('latest').timestamp;
 
