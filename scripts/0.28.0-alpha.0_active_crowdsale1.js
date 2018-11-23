@@ -12,7 +12,7 @@ module.exports = runner.generateHandler(async (ctx) => {
     const _artifacts = await require('../parts/0.28.0/artifacts')(artifacts);
     const utils = ctx.utils;
 
-    const logs = new Logger('0.28.0-alpha.0_active_crowdsale1');
+    const logs = new Logger(__filename);
     const accounts = web3.eth.accounts;
 
     const owner = accounts[0];

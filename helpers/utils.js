@@ -244,6 +244,45 @@ function percent(val, percent) {
     );
 }
 
+function packSetupCrowdsaleParameters_v0_23_2(stages, milestones) {
+    const [pack1, pack2] = stages.reduce((result, stage, idx) => {
+        const pack1 = [...stage.dates, stage.discount, stage.vestingTime];
+
+        if (stage.volumeBonuses.length === 0) {
+            pack1.push(0, 0);
+        } else {
+            const lastOffset = result[1].length;
+
+            pack1.push(lastOffset, lastOffset + stage.volumeBonuses.length * 2);
+            result[1].push(...stage.volumeBonuses.reduce((result, v, idx) => (result.push(stage.volumeBoundaries[idx], v), result), []));
+        }
+
+        result[0].push(pack1);
+
+        return result;
+    }, [[], []]);
+    const [pack3, pack4, pack5] = milestones
+        .map(m =>
+            encodeMilestoneParameters(
+                m.name,
+                m.description,
+                m.tranchePercent,
+                m.endDate,
+                m.voteEndDate,
+                m.withdrawalWindow
+            )
+        )
+        .reduce((result, m, idx) => {
+            result[0].push([...m.dates, m.tranchePercent]);
+            result[1].push(...m.offsets);
+            result[2] += m.namesAndDescriptions.slice(2);
+
+            return result;
+        }, [[], [], '0x']);
+
+    return [pack1, pack2, pack3, pack4, pack5];
+}
+
 function packSetupCrowdsaleParameters(stages, milestones, paymentMethods) {
     const [pack1, pack2] = stages.reduce((result, stage, idx) => {
         const pack1 = [...stage.dates, stage.discount, stage.vestingTime];
@@ -338,6 +377,7 @@ module.exports = {
     percent,
     fromInternalPercent,
     packSetupCrowdsaleParameters,
+    packSetupCrowdsaleParameters_v0_23_2,
     createStagesGenerator,
     createMilestonesGenerator,
     toInternalUSD,

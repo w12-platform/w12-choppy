@@ -10,6 +10,7 @@ module.exports = async (artifacts, service) => {
     const VersionsLedger = artifacts.VersionsLedger;
     const TokenExchanger = artifacts.TokenExchanger;
     const W12ListerStub = artifacts.W12ListerStub;
+    const W12Crowdsale = artifacts.W12Crowdsale;
 
     const VersionsLedgerContract = await VersionsLedger.new();
     const WTokenStubContract = await WTokenStub.new('TestToken1', 'TT1', 18);
@@ -34,6 +35,7 @@ module.exports = async (artifacts, service) => {
         W12FundFactoryContract,
         W12CrowdsaleFactoryContract,
         TokenExchangerContract,
-        W12ListerStubContract
+        W12ListerStubContract,
+        W12Crowdsale
     };
 }

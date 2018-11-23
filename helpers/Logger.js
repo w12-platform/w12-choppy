@@ -1,6 +1,6 @@
 class Logger {
-    constructor(id) {
-        this.id = id;
+    constructor(sender) {
+        this.sender = sender;
         this.messages = [];
     }
 
@@ -9,7 +9,7 @@ class Logger {
     }
 
     flush() {
-        console.log(`Logs id: ${this.id}`);
+        console.log(`Logs from: ${this.sender}`);
         console.log(this.messages.join('\n'));
         this.messages = [];
     }
