@@ -60,6 +60,7 @@ module.exports = runner.generateHandler(async (ctx) => {
 
     const TT1 = await WToken.new('TT1', 'TT1', 18);
     const TT2 = await WToken.new('TT2', 'TT2', 2);
+    const ZERO = await WToken.new('ZERO', 'ZERO', 18);
 
     await TT1.mint(accounts[0], '100000000' + '000000000000000000', 0);
     await TT2.mint(accounts[0], '100000000' + '00', 0);
@@ -67,9 +68,11 @@ module.exports = runner.generateHandler(async (ctx) => {
     await RatesContract.addSymbol(web3.fromUtf8('ETH'));
     await RatesContract.addSymbolWithTokenAddress(web3.fromUtf8('TT1'), TT1.address);
     await RatesContract.addSymbolWithTokenAddress(web3.fromUtf8('TT2'), TT2.address);
+    await RatesContract.addSymbolWithTokenAddress(web3.fromUtf8('ZERO'), ZERO.address);
     await RatesContract.set(web3.fromUtf8('TT1'), '1' + '00000000');
     await RatesContract.set(web3.fromUtf8('TT2'), '2' + '00000000');
     await RatesContract.set(web3.fromUtf8('ETH'), '3' + '00000000');
+    await RatesContract.set(web3.fromUtf8('ZERO'), '4' + '00000000');
 
     await WTokenStubContract.mint(owner, '100000000' + '000000000000000000', 0);
     await WTokenStubContract.approve(W12ListerStubContract.address, '100000000' + '000000000000000000');
